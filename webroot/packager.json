@@ -5,13 +5,13 @@
 	 * This is the name of your application, which is displayed on the device when the app is installed. On IOS, this should match
 	 * the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationName":"My Application",
+	"applicationName":"YDCV",
 
 	/**
 	 * @cfg {String} applicationId
 	 * This is the name namespace for your application. On IOS, this should match the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationId":"com.mycompany.myAppID",
+	"applicationId":"ch.alexi.ydcv",
 
 	/**
 	 * @cfg {String} bundleSeedId
@@ -24,7 +24,7 @@
 	 * @required
 	 * This is the version of your application.
 	 */
-	"versionString":"1.0",
+	"versionString":"0.1a",
 
 	/**
 	 * @cfg {Integer} versionCode
@@ -79,7 +79,7 @@
 	 *  - Android
 	 *  - AndroidEmulator
 	 */
-	"platform":"iOSSimulator",
+	"platform":"Android",
 
 	/**
 	 * @cfg {String} deviceType
@@ -147,12 +147,12 @@
 	 */
 	"permissions":[
 					"INTERNET",
-					"ACCESS_NETWORK_STATE",
+					"ACCESS_NETWORK_STATE"/*,
 					"CAMERA",
     				"VIBRATE",
     				"ACCESS_FINE_LOCATION",
     				"ACCESS_COARSE_LOCATION",
-    				"CALL_PHONE"],
+    				"CALL_PHONE"*/],
 
 	/**
 	 * @cfg {Array[String]} orientations

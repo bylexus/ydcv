@@ -38,7 +38,7 @@ Ext.define('XV.view.Main', {
                 {
                     xtype: 'titlebar',
                     docked: 'top',
-                    title: 'YDC',
+                    title: 'YDCV',
                     itemId: 'imageTitlebar',
                     items: [{
                         text: 'prev',
@@ -81,13 +81,13 @@ Ext.define('XV.view.Main', {
 
                 }]
 
-            }, {
+            }/*, {
                 title: 'Settings',
                 iconCls: 'settings'
             }, {
                 title: 'About',
                 iconCls: 'info2'
-            }]
+            }*/]
     },
 
     onBtnClick: function(btn) {
