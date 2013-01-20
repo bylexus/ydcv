@@ -15,6 +15,7 @@ Ext.define('XV.controller.Main', {
             subtext: '#subtext',
             lastComicBtn: 'button[action=lastComic]',
             nextComicBtn: 'button[action=nextComic]',
+            selComicBtn: 'button[action=selectComic]'
         },
         control: {
             sqlBtn: {
@@ -25,6 +26,9 @@ Ext.define('XV.controller.Main', {
             },
             nextComicBtn: {
                 tap: 'onNextComicTap'
+            },
+            selComicBtn: {
+                tap: 'onSelComicBtn'
             }
         }
     },
@@ -127,6 +131,12 @@ Ext.define('XV.controller.Main', {
 
     onNextComicTap: function() {
         this.getComicInfo(this.onComicInfo,this.actComic+1);
+    },
+
+
+    onSelComicBtn: function(btn) {
+        console.log('here');
+        this.getMain()._comicSelPanel.showBy(btn);
     }
 
 

@@ -1,6 +1,9 @@
 Ext.define('XV.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
+
+    _comicSelPanel: null,
+
     requires: [
         'Ext.TitleBar',
         'Ext.Video'
@@ -90,7 +93,34 @@ Ext.define('XV.view.Main', {
             }*/]
     },
 
-    onBtnClick: function(btn) {
-        console.log(btn);
+    initialize: function() {
+        this.callParent(arguments);
+        this._comicSelPanel = Ext.create('Ext.Panel', {
+            left: 0,
+            top: 0,
+            layout: 'fit',
+            modal: true,
+            padding: 5,
+            hideOnMaskTap: true,
+            items: [{
+                xtype: 'fieldset',
+                title: 'Choose comic:',
+                defaults: {
+                    labelWidth: 160
+                },
+                items: [{
+                    xtype: 'radiofield',
+                    name: 'comic',
+                    value: 'xkcd',
+                    label: 'XKCD',
+                    checked: true
+                }, {
+                    xtype: 'radiofield',
+                    name: 'comic',
+                    value: 'dilbert',
+                    label: 'Dilbert'
+                }]
+            }]
+        });
     }
 });
