@@ -1,5 +1,5 @@
 Ext.define('XV.proxy.Adresse', {
-    extend: 'Ext.data.proxy.SQL',
+    extend: 'Ext.data.proxy.LocalStorage',
     alias: 'proxy.Adresse',
     config: {
     	filters: [],
