@@ -1,8 +1,7 @@
 Ext.define('XV.controller.Main', {
     extend: 'Ext.app.Controller',
 
-    actComic: 0,
-    newestComic: 0,
+    _comicObj: null,
 
     config: {
         models: ['Adresse'],
@@ -15,7 +14,8 @@ Ext.define('XV.controller.Main', {
             subtext: '#subtext',
             lastComicBtn: 'button[action=lastComic]',
             nextComicBtn: 'button[action=nextComic]',
-            selComicBtn: 'button[action=selectComic]'
+            selComicBtn: 'button[action=selectComic]',
+            comicChoosePanel: '#comicChoosePanel'
         },
         control: {
             sqlBtn: {
@@ -29,48 +29,33 @@ Ext.define('XV.controller.Main', {
             },
             selComicBtn: {
                 tap: 'onSelComicBtn'
+            },
+            main: {
+                initialize: 'onMainInit'
+            },
+            '#comicChoosePanel radiofield[name=comic]': {
+                check: 'onComicChoose'
             }
         }
     },
     
-    //called when the Application is launched, remove if not needed
-    launch: function(app) {
-
-        this.getComicInfo(this.onComicInfo);
+    onMainInit: function(cpanel) {
+        var radio = this.getComicChoosePanel().down('radiofield[name=comic]');
+        radio.check();
+        this.onComicChoose(radio);
     },
 
-    getComicInfo: function(callback,nr) {
-        nr = nr || 0;
+    getComicInfo: function(comicObj) {
         this.getLastComicBtn().disable();
         this.getNextComicBtn().disable();
 
-        var url = 'http://xkcd.com/';
-        if (nr > 0) {
-            url += nr;
-        }
-        url += '/info.0.json';
         Ext.Viewport.setMasked(true);
-        Ext.Ajax.request({
-            url: url,
-            success: function(ret) {
-                try {
-                    var retObj = Ext.JSON.decode(ret.responseText);
-                    if (nr < 1) this.newestComic = retObj.num;
-                    this.actComic = retObj.num;
-                    this.onComicInfo(retObj);
-                } catch (e) {
-
-                }
-            },
-            failure: function() {
-                Ext.Viewport.setMasked(false);
-            },
-            scope: this
-        });
+        comicObj.getActComicInfo(this.onComicInfo,this);
         
     },
 
-    onComicInfo: function(obj) {
+    onComicInfo: function(comicObj,obj) {
+        console.log('here');
         var html = '<img src="{0}" width="{1}" height="{2}"/>';
         var img = new Image();
         var me = this;
@@ -93,22 +78,18 @@ Ext.define('XV.controller.Main', {
         };
         img.src = obj.img;
         
-        
-        
-        //this.getImage().setSrc(obj.img);
-        
         this.getSubtext().setData({
             nr: obj.num,
             title: Ext.String.htmlEncode(obj.safe_title),
-            content: Ext.String.htmlEncode(obj.alt)
+            content: Ext.String.htmlEncode(obj.safe_text)
 
         });
         this.getLastComicBtn().disable();
         this.getNextComicBtn().disable();
-        if (this.newestComic > obj.num) {
+        if (comicObj.hasNewerComic()) {
             this.getNextComicBtn().enable();
         }
-        if (obj.num > 1) {
+        if (comicObj.hasOlderComic()) {
             this.getLastComicBtn().enable();
         }
     },
@@ -126,19 +107,34 @@ Ext.define('XV.controller.Main', {
     },
 
     onLastComicTap: function() {
-        this.getComicInfo(this.onComicInfo,this.actComic-1);
+        if (this._comicObj) {
+            this._comicObj.prepareOlderComic();
+            this.getComicInfo(this._comicObj);
+        }
     },
 
     onNextComicTap: function() {
-        this.getComicInfo(this.onComicInfo,this.actComic+1);
+        if (this._comicObj) {
+            this._comicObj.prepareNewerComic();
+            this.getComicInfo(this._comicObj);
+        }
     },
 
 
     onSelComicBtn: function(btn) {
-        console.log('here');
         this.getMain()._comicSelPanel.showBy(btn);
-    }
+    },
 
+    onComicChoose: function(radiofield) {
+        var comic = this.getComicChoosePanel().getValues().comic;
+        Ext.require(this.getMain().comics[comic].className,function() {
+            this._comicObj = Ext.create(this.getMain().comics[comic].className);
+            this.getComicInfo(this._comicObj);
+        },this);
 
+        var panel = radiofield.up('#floatPanel');
+        if (panel)
+            panel.hide();
+    },
 
 });
