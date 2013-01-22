@@ -43,9 +43,13 @@ Ext.define('XV.view.Main', {
                     docked: 'top',
                     title: 'YDCV',
                     itemId: 'imageTitlebar',
+                    ui: 'topbar',
+                    defaults: {
+                        ui: 'topbtn'
+                    },
                     items: [{
                         text: 'prev',
-                        ui: 'back',
+                        cls: 'x-button-back',
                         action: 'lastComic',
                         align: 'left'
                     }, {
@@ -55,7 +59,7 @@ Ext.define('XV.view.Main', {
                         action: 'selectComic'
                     },{
                         text: 'next',
-                        ui: 'forward',
+                        cls: 'x-button-forward',
                         action: 'nextComic',
                         align: 'right'
                     }]
@@ -68,6 +72,7 @@ Ext.define('XV.view.Main', {
                         pack: 'left'
                     },
                     items:[{
+                        cls: 'comicImg',
                         itemId: 'image',
                         margin: '0 0 20 0',
                     }]

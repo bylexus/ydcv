@@ -1,4 +1,16 @@
+$font-family: "Comic Sans MS", cursive, sans-serif;
+
+// VARIABLES
+$base-color: #1985D0;
+$base-gradient:'glossy';
+$active-color: #1985D0;
+$neutral-color: #fff;
+$page-bg-color: #fff;
+
 @import 'sencha-touch/default/all';
+@import 'compass/css3';
+
+
 
 // You may remove any of the following modules that you
 // do not use in order to create a smaller css file.
@@ -16,14 +28,14 @@
 @include sencha-form;
 @include sencha-msgbox;
 
-
-
+@include sencha-toolbar-ui('topbar', #222, 'matte');
+@include sencha-button-ui('topbtn', darken(#333,20%), 'glossy');
 // Your custom code goes here...
 @include sencha-loading-spinner( );
 
 .descriptiveText {
-	font-family: Georgia, Helvetica, sans-serif;
-	font-size: 10.5pt;
+	padding: 5px;
+	font-size: .8em;
 	.title {
 		text-align: center;
 		font-weight: bold;
