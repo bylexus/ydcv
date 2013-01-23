@@ -8,11 +8,11 @@ Ext.define('XV.view.Main', {
         'xkcd': {
             name: 'XKCD',
             className: 'XV.class.XkcdComic'
-        }/*,
+        },
         'dilbert': {
             name: 'Dilbert',
             className: 'XV.class.DilbertComic'
-        }*/
+        }
     },
 
     requires: ['Ext.TitleBar'],

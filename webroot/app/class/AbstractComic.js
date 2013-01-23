@@ -10,7 +10,7 @@ Ext.define('XV.class.AbstractComic', {
 	},
 	prepareOlderComic: function() {
 		
-	}
+	},
 
 	hasNewerComic: function() {
 

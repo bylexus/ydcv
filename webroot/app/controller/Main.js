@@ -65,7 +65,7 @@ Ext.define('XV.controller.Main', {
     },
 
     onComicInfo: function(comicObj,obj) {
-        console.log('here');
+        console.log('object: ',obj);
         var html = '<img src="{0}" width="{1}" height="{2}"/>';
         var img = new Image();
         Ext.Anim.run(this.getImage(), 'slide', {
