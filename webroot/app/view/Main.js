@@ -67,11 +67,6 @@ Ext.define('XV.view.Main', {
                     margin: '0 0 20 0'
                 }]
 
-            }, {
-                docked: 'bottom',
-                itemId: 'subtext',
-                tpl: ['<div class="descriptiveText">', '<div class="title"><a href="http://xkcd.com/{nr}" target="_blank">#{nr}</a>: {title}</div>', '<div class="content">{content}</div>', '</div>']
-
             }]
 
         }

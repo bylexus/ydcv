@@ -38,7 +38,7 @@ Ext.define('XV.controller.Main', {
             }
         }
     },
-    
+
     onMainInit: function(cpanel) {
         var radio = this.getComicChoosePanel().down('radiofield[name=comic]');
         radio.check();
@@ -47,14 +47,14 @@ Ext.define('XV.controller.Main', {
     },
 
     initSwipeNavigation: function(cmp) {
-        cmp.element.on('swipe', function(e){
-            if (e.duration > 90) return true;
-            if (e.direction === 'left') {
+        cmp.element.on('swipe', function(e) {
+            if(e.duration > 90) return true;
+            if(e.direction === 'left') {
                 this.onNextComicTap();
-            } else if (e.direction === 'right'){
+            } else if(e.direction === 'right') {
                 this.onLastComicTap();
             }
-        },this);
+        }, this);
     },
 
     getComicInfo: function(comicObj) {
@@ -62,32 +62,31 @@ Ext.define('XV.controller.Main', {
         this.getNextComicBtn().disable();
 
         Ext.Viewport.setMasked(true);
-        comicObj.getActComicInfo(this.onComicInfo,this);
+        comicObj.getActComicInfo(this.onComicInfo, this);
     },
 
-    onComicInfo: function(comicObj,obj) {
-        console.log('object: ',obj);
+    onComicInfo: function(comicObj, obj) {
+        console.log('object: ', obj);
         var html = '<img src="{0}" width="{1}" height="{2}"/>';
         var img = new Image();
+        this.getImage().element.on({
+            taphold: 'onImgTaphold',
+            scope: this
+        });
         Ext.Anim.run(this.getImage(), 'slide', {
             out: true,
             autoClear: false,
             direction: this.direction || 'left',
             after: function() {
                 img.src = obj.img;
-        
-                this.getSubtext().setData({
-                    nr: obj.num,
-                    title: Ext.String.htmlEncode(obj.safe_title),
-                    content: Ext.String.htmlEncode(obj.safe_text)
 
-                });
+                
                 this.getLastComicBtn().disable();
                 this.getNextComicBtn().disable();
-                if (comicObj.hasNewerComic()) {
+                if(comicObj.hasNewerComic()) {
                     this.getNextComicBtn().enable();
                 }
-                if (comicObj.hasOlderComic()) {
+                if(comicObj.hasOlderComic()) {
                     this.getLastComicBtn().enable();
                 }
             },
@@ -132,7 +131,7 @@ Ext.define('XV.controller.Main', {
     },
 
     onLastComicTap: function() {
-        if (this._comicObj) {
+        if(this._comicObj) {
             this._comicObj.prepareOlderComic();
             this.direction = 'right';
             this.getComicInfo(this._comicObj);
@@ -140,7 +139,7 @@ Ext.define('XV.controller.Main', {
     },
 
     onNextComicTap: function() {
-        if (this._comicObj) {
+        if(this._comicObj) {
             this._comicObj.prepareNewerComic();
             this.direction = 'left';
             this.getComicInfo(this._comicObj);
@@ -154,13 +153,15 @@ Ext.define('XV.controller.Main', {
 
     onComicChoose: function(radiofield) {
         var comic = this.getComicChoosePanel().getValues().comic;
-        Ext.require(this.getMain().comics[comic].className,function() {
+        Ext.require(this.getMain().comics[comic].className, function() {
             this._comicObj = Ext.create(this.getMain().comics[comic].className);
             this.getComicInfo(this._comicObj);
-        },this);
+        }, this);
 
         var panel = radiofield.up('#floatPanel');
-        if (panel)
-            panel.hide();
+        if(panel) panel.hide();
+    },
+    onImgTaphold: function() {
+        Ext.Msg.alert(this._comicObj.getComicInfo().safe_title, this._comicObj.getComicInfo().safe_text);
     }
 });
