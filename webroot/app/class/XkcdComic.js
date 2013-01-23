@@ -4,7 +4,7 @@ Ext.define('XV.class.XkcdComic', {
     newestComic: 0,
 
     getActComicInfo: function(callback, scope) {
-        var nr = this.actComic || 0;
+        var nr = ((this.actComic)?this.actComic.num:0)||0;
 
         var url = 'http://xkcd.com/';
         if(nr > 0) {
@@ -17,13 +17,8 @@ Ext.define('XV.class.XkcdComic', {
                 try {
                     var retObj = Ext.JSON.decode(ret.responseText);
                     if(nr < 1) this.newestComic = retObj.num;
-                    this.actComic = retObj.num;
-                    callback.call(scope, this, {
-                        img: retObj.img,
-                        num: retObj.num,
-                        safe_title: retObj.safe_title,
-                        safe_text: Ext.String.htmlEncode(retObj.alt)
-                    });
+                    this.actComic = retObj;
+                    callback.call(scope, this, this.getComicInfo());
                 } catch(e) {
                     console.log(e);
                 }
@@ -32,25 +27,32 @@ Ext.define('XV.class.XkcdComic', {
             scope: this
         });
     },
-
+    getComicInfo: function() {
+        return {
+                        img: this.actComic.img,
+                        num: this.actComic.num,
+                        safe_title: this.actComic.safe_title,
+                        safe_text: Ext.String.htmlEncode(this.actComic.alt)
+                    }
+    },
     prepareNewerComic: function() {
-        if(this.actComic < this.newestComic) {
-            this.actComic++;
+        if(this.actComic.num < this.newestComic) {
+            this.actComic.num++;
         }
 
     },
     prepareOlderComic: function() {
-        if(this.actComic > 1) {
-            this.actComic--;
+        if(this.actComic.num > 1) {
+            this.actComic.num--;
         }
     },
 
     hasNewerComic: function() {
-        return this.newestComic > this.actComic;
+        return this.newestComic > this.actComic.num;
     },
 
     hasOlderComic: function() {
-        return this.actComic > 1;
+        return this.actComic.num > 1;
     }
 
 
