@@ -66,8 +66,6 @@ Ext.define('XV.controller.Main', {
     },
 
     onComicInfo: function(comicObj, obj) {
-        console.log('object: ', obj);
-        var html = '<img src="{0}" width="{1}" height="{2}"/>';
         var img = new Image();
         this.getImage().element.on({
             taphold: 'onImgTaphold',
@@ -98,8 +96,8 @@ Ext.define('XV.controller.Main', {
                 autoClear: false,
                 direction: this.direction || 'left'
             });
-            html = Ext.String.format(html, obj.img, img.width, img.height);
-            this.getImage().setHtml(html);
+            //this.getImage().setHtml(html);
+            this.getImage().setHtml(img);
             this.getImage().setSize({
                 width: img.width,
                 height: img.height
