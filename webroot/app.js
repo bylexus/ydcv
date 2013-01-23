@@ -10,7 +10,8 @@ Ext.application({
 
     requires: [
         'Ext.MessageBox',
-        'Ext.dataview.List'
+        'Ext.dataview.List',
+        'XV.class.AbstractComic'
     ],
 
     views: ['Main'],

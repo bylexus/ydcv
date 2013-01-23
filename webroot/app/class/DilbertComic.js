@@ -6,14 +6,7 @@ Ext.define('XV.class.DilbertComic', {
     items: null,
 
     getActComicInfo: function(callback, scope) {
-        var nr = this.actComic || 0;
-
         var url = 'http://feed.dilbert.com/dilbert/daily_strip?format=xml';
-        /*if (nr > 0) {
-            url += nr;
-        }
-        url += '/info.0.json';
-        */
         Ext.Ajax.request({
             url: url,
             success: function(ret) {
@@ -46,6 +39,7 @@ Ext.define('XV.class.DilbertComic', {
             scope: this
         });
     },
+
     getComicInfo: function() {
         var desc = this.actComic.getElementsByTagName('description')[0].firstChild.data;
         var re = /src="([^"])+"/;
@@ -54,6 +48,7 @@ Ext.define('XV.class.DilbertComic', {
         imgUrl = imgUrl.substr(0, imgUrl.length - 1);
         var data = {
             img: imgUrl,
+            orig_link: this.actComic.getElementsByTagName('link')[0].firstChild.data,
             num: this.actComic.getElementsByTagName('pubDate')[0].firstChild.data,
             safe_title: Ext.String.htmlEncode(this.actComic.getElementsByTagName('title')[0].firstChild.data),
             safe_text: ''
@@ -81,7 +76,6 @@ Ext.define('XV.class.DilbertComic', {
     },
 
     hasOlderComic: function() {
-        console.log(this.getComicIndex(this.actComic));
         return(this.getComicIndex(this.actComic) < this.items.length - 1);
     },
 

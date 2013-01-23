@@ -77,8 +77,6 @@ Ext.define('XV.controller.Main', {
             direction: this.direction || 'left',
             after: function() {
                 img.src = obj.img;
-
-                
                 this.getLastComicBtn().disable();
                 this.getNextComicBtn().disable();
                 if(comicObj.hasNewerComic()) {
@@ -112,6 +110,8 @@ Ext.define('XV.controller.Main', {
                 'text-align': 'center',
                 'line-height': (panel.element.getHeight()) + 'px'
             });
+
+            this.getSubtext().setHtml('<div><a href="'+obj.orig_link+'">'+obj.orig_link+'</a></div>');
             Ext.Viewport.setMasked(false);
         }.bind(this);
     },
@@ -151,10 +151,10 @@ Ext.define('XV.controller.Main', {
 
     onComicChoose: function(radiofield) {
         var comic = this.getComicChoosePanel().getValues().comic;
-        Ext.require(this.getMain().comics[comic].className, function() {
-            this._comicObj = Ext.create(this.getMain().comics[comic].className);
+        XV.class.AbstractComic.getComicObject(comic,function(comicObj){
+            this._comicObj = comicObj;
             this.getComicInfo(this._comicObj);
-        }, this);
+        },this);
 
         var panel = radiofield.up('#floatPanel');
         if(panel) panel.hide();
