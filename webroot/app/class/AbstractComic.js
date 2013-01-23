@@ -18,7 +18,9 @@ Ext.define('XV.class.AbstractComic', {
 
 	hasOlderComic: function() {
 
-	}
+	},
+
+	getComicInfo: function() {}
 
 
 });
