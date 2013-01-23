@@ -48,9 +48,10 @@ Ext.define('XV.controller.Main', {
 
     initSwipeNavigation: function(cmp) {
         cmp.element.on('swipe', function(e){
+            if (e.duration > 90) return true;
             if (e.direction === 'left') {
                 this.onNextComicTap();
-            } else {
+            } else if (e.direction === 'right'){
                 this.onLastComicTap();
             }
         },this);
