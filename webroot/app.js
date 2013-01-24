@@ -10,7 +10,8 @@ Ext.application({
 
     requires: [
         'Ext.MessageBox',
-        'Ext.dataview.List'
+        'Ext.dataview.List',
+        'XV.classes.SettingsManager'
     ],
 
     views: ['Main'],
@@ -40,39 +41,6 @@ Ext.application({
 
         // Initialize the main view
         Ext.Viewport.add(Ext.create('XV.view.Main'));
-        /*
-        Ext.create('Ext.Container',{
-            fullscreen: true,
-            items:[{
-                docked: 'top',
-                xtype: 'titlebar',
-                title: 'title',
-                items: [{
-                    xtype: 'button',
-                    text: 'open floating panel form',
-                    handler: function(btn) {
-                        var panel = Ext.create('Ext.Panel', {
-                            left: 0,
-                            top: 0,
-                            layout: 'fit',
-                            modal: true,
-                            hideOnMaskTap: true,
-                            items: [{
-                                    xtype: 'textfield',
-                                    name: 'myfield',
-                                    label: 'myfield',
-                                    labelWidth: 200
-                                
-                            }]
-                        });
-                        panel.showBy(btn);
-                    }
-                }]
-            }, {
-                    html: 'test content'
-            }]
-        });
-*/
     },
 
     onUpdated: function() {

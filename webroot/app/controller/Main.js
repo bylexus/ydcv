@@ -40,7 +40,13 @@ Ext.define('XV.controller.Main', {
     },
 
     onMainInit: function(cpanel) {
-        var radio = this.getComicChoosePanel().down('radiofield[name=comic]');
+        var radio;
+        var lastComic = XV.classes.SettingsManager.getLastComicIdent();
+        if (lastComic) {
+            radio = this.getComicChoosePanel().down('radiofield[name=comic]');
+        } else {
+            radio = this.getComicChoosePanel().down('radiofield[name=comic]');
+        }
         radio.check();
         this.onComicChoose(radio);
         this.initSwipeNavigation(cpanel);
