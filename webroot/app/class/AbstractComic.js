@@ -8,6 +8,10 @@ Ext.define('XV.class.AbstractComic', {
 	        'dilbert': {
 	            name: 'Dilbert',
 	            className: 'XV.class.DilbertComic'
+	        },
+	        'smbc': {
+	            name: 'SMBC',
+	            className: 'XV.class.SmbcComic'
 	        }
 	    },
 
