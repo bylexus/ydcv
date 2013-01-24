@@ -1,5 +1,5 @@
-Ext.define('XV.class.XkcdComic', {
-    extend: 'XV.class.AbstractComic',
+Ext.define('XV.classes.XkcdComic', {
+    extend: 'XV.classes.AbstractComic',
     actComic: 0,
     newestComic: 0,
 
@@ -29,11 +29,12 @@ Ext.define('XV.class.XkcdComic', {
     },
     getComicInfo: function() {
         return {
-                        img: this.actComic.img,
-                        num: this.actComic.num,
-                        safe_title: this.actComic.safe_title,
-                        safe_text: Ext.String.htmlEncode(this.actComic.alt)
-                    }
+            img: this.actComic.img,
+            num: this.actComic.num,
+            orig_link: 'http://xkcd.com/'+this.actComic.num+'/',
+            safe_title: this.actComic.safe_title,
+            safe_text: Ext.String.htmlEncode(this.actComic.alt)
+        }
     },
     prepareNewerComic: function() {
         if(this.actComic.num < this.newestComic) {

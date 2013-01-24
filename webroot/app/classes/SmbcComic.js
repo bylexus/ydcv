@@ -1,4 +1,4 @@
-Ext.define('XV.classes.DilbertComic', {
+Ext.define('XV.classes.SmbcComic', {
     extend: 'XV.classes.AbstractComic',
     actComic: null,
     newestComic: null,
@@ -6,7 +6,7 @@ Ext.define('XV.classes.DilbertComic', {
     items: null,
 
     getActComicInfo: function(callback, scope) {
-        var url = 'http://feed.dilbert.com/dilbert/daily_strip?format=xml';
+        var url = 'http://feeds.feedburner.com/smbc-comics/PvLb?format=xml';
         Ext.Ajax.request({
             url: url,
             success: function(ret) {
@@ -80,10 +80,10 @@ Ext.define('XV.classes.DilbertComic', {
     },
 
     getComicIndex: function(comicObj) {
-        var guid = comicObj.getElementsByTagName('guid')[0].firstChild.data;
+        var link = comicObj.getElementsByTagName('link')[0].firstChild.data;
         for(var i = 0; i < this.items.length; i++) {
 
-            if(this.items[i].getElementsByTagName('guid')[0].firstChild.data === guid) {
+            if(this.items[i].getElementsByTagName('link')[0].firstChild.data === link) {
                 return i;
             }
         }

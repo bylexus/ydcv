@@ -28,8 +28,11 @@ $page-bg-color: #fff;
 @include sencha-form;
 @include sencha-msgbox;
 
-@include sencha-toolbar-ui('topbar', #222, 'matte');
-@include sencha-button-ui('topbtn', darken(#333,20%), 'glossy');
+@include sencha-toolbar-ui('topbar', #222, 'glossy');
+@include sencha-tabbar-ui('mainTabpanel', #222, $tabs-bar-gradient, #FFF);
+
+
+//@include sencha-button-ui('topbtn', darken(#333,20%), 'glossy');
 // Your custom code goes here...
 @include sencha-loading-spinner( );
 
@@ -43,6 +46,27 @@ $page-bg-color: #fff;
 	}
 	.content {
 		text-align: center;
+	}
+}
+
+.subtext {
+	background-color: #222;
+	text-align: center;
+	.x-html {
+		padding: 0.8em;
+	}
+	a {
+		font-size: .8em;
+		color: white;
+	}
+	a:visited {
+		color: white;
+	}
+}
+
+.about {
+	.subtitle, .disclaimer, .thanks {
+		margin-bottom: 2em;
 	}
 }
 

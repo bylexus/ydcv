@@ -11,7 +11,8 @@ Ext.application({
     requires: [
         'Ext.MessageBox',
         'Ext.dataview.List',
-        'XV.classes.SettingsManager'
+        'XV.classes.SettingsManager',
+        'XV.classes.AbstractComic'
     ],
 
     views: ['Main'],

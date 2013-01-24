@@ -1,4 +1,4 @@
-Ext.define('XV.class.SettingsManager', {
+Ext.define('XV.classes.SettingsManager', {
     alias: 'settingsManager',
     singleton: true,
 
