@@ -1,11 +1,11 @@
 $font-family: "Comic Sans MS", cursive, sans-serif;
 
 // VARIABLES
-$base-color: #1985D0;
-$base-gradient:'glossy';
-$active-color: #1985D0;
+$base-color: #000;
+$base-gradient:'matte';
+$active-color: #319113;
 $neutral-color: #fff;
-$page-bg-color: #fff;
+$page-bg-color: #333;
 
 @import 'sencha-touch/default/all';
 @import 'compass/css3';
@@ -28,11 +28,11 @@ $page-bg-color: #fff;
 @include sencha-form;
 @include sencha-msgbox;
 
-@include sencha-toolbar-ui('topbar', #222, 'glossy');
-@include sencha-tabbar-ui('mainTabpanel', #222, $tabs-bar-gradient, #FFF);
+@include sencha-toolbar-ui('topbar', #000, 'recessed');
+@include sencha-tabbar-ui('mainTabpanel', #000, 'recessed', #319113);
 
 
-//@include sencha-button-ui('topbtn', darken(#333,20%), 'glossy');
+@include sencha-button-ui('topbtn', #319113, 'matte');
 // Your custom code goes here...
 @include sencha-loading-spinner( );
 
@@ -57,10 +57,10 @@ $page-bg-color: #fff;
 	}
 	a {
 		font-size: .8em;
-		color: white;
+		color: #319113;
 	}
 	a:visited {
-		color: white;
+		color: #319113;
 	}
 }
 
@@ -68,6 +68,11 @@ $page-bg-color: #fff;
 	.subtitle, .disclaimer, .thanks {
 		margin-bottom: 2em;
 	}
+}
+
+.theImg {
+	vertical-align:middle;
+          @include box-shadow(0px 0px 30px #319113)
 }
 
 /** Icons **/

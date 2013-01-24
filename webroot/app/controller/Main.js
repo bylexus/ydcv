@@ -108,10 +108,7 @@ Ext.define('XV.controller.Main', {
                 height: img.height
             });
             var imgEl = this.getImage().element.down('img');
-            imgEl.setStyle({
-                'vertical-align': 'middle',
-                'box-shadow':' 0 0 40px #FFF',
-            });
+            imgEl.addCls('theImg');
             var cont = imgEl.parent();
             var panel = this.getImage().up('container');
             cont.setStyle({
