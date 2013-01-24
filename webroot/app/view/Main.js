@@ -47,6 +47,7 @@ Ext.define('XV.view.Main', {
             }, {
                 scrollable: 'both',
                 itemId: 'imageContainer',
+                style: 'background-image: url(resources/images/black.jpg)',
                 layout: {
                     type: 'vbox',
                     align: 'stretch',

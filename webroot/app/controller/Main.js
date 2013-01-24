@@ -109,7 +109,8 @@ Ext.define('XV.controller.Main', {
             });
             var imgEl = this.getImage().element.down('img');
             imgEl.setStyle({
-                'vertical-align': 'middle'
+                'vertical-align': 'middle',
+                'box-shadow':' 0 0 40px #FFF',
             });
             var cont = imgEl.parent();
             var panel = this.getImage().up('container');
