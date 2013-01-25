@@ -9,11 +9,11 @@ Ext.define('XV.controller.Main', {
         refs: {
             main: 'main',
             comicPanel: '#comicPanel',
-            imageTitlebar: '#imageTitlebar',
             image: '#image',
             lastComicBtn: 'button[action=lastComic]',
             nextComicBtn: 'button[action=nextComic]',
             selComicBtn: 'button[action=selectComic]',
+            aboutBtn: 'button[action=about]',
             comicChoosePanel: '#comicChoosePanel'
         },
         control: {
@@ -29,8 +29,12 @@ Ext.define('XV.controller.Main', {
             selComicBtn: {
                 tap: 'onSelComicBtn'
             },
+            aboutBtn: {
+                tap: 'onAboutBtn'
+            },
             main: {
-                initialize: 'onMainInit'
+                initialize: 'onMainInit',
+                back: 'onAboutBackBtn'
             },
             '#comicChoosePanel radiofield[name=comic]': {
                 check: 'onComicChoose'
@@ -167,7 +171,29 @@ Ext.define('XV.controller.Main', {
     onImgTaphold: function() {
         Ext.Msg.alert(this._comicObj.getComicInfo().safe_title, this._comicObj.getComicInfo().safe_text);
     },
+
     onImgDoubleTap: function() {
         window.open(this._comicObj.getComicInfo().orig_link);
+    },
+
+    onAboutBtn: function() {
+        this.getMain().push(this.getMain()._aboutPanelCfg);
+
+        // hide all btns except the back btn, which is the first one:
+        // yes, schtoeffel, I KNOW you don't like for loops :-)
+        var btns = this.getMain().getNavigationBar().query('button');
+        for (var i = 1; i < btns.length; i++) {
+            btns[i].hide();
+        }
+
+    },
+
+    onAboutBackBtn: function() {
+        // show all buttons in the navbar we have hidden on nav:
+        // yes, schtoeffel, I KNOW you don't like for loops :-)
+        var btns = this.getMain().getNavigationBar().query('button');
+        for (var i = 1; i < btns.length; i++) {
+            btns[i].show();
+        }
     }
 });

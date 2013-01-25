@@ -1,18 +1,54 @@
 Ext.define('XV.view.Main', {
-    extend: 'Ext.tab.Panel',
+    extend: 'Ext.navigation.View',
     xtype: 'main',
 
     _comicSelPanel: null,
-
-    requires: ['Ext.TitleBar'],
+    _aboutPanelCfg: {
+        title: 'About',
+        iconCls: 'info2',
+        style: 'background-image: url(resources/images/white_carbonfiber.png)',
+        items:[{
+            styleHtmlContent: true,
+            cls: 'about',
+            html:
+            '<div class="title"><h1>YDCV - Your Daily Comic Viewer</h1></div>'+
+            '<div class="subtitle">A very simplistic, fast, slick web comic viewer offering exactly the solution for my need: reading my favorite web comics. Not more, not less.</div>'+
+            '<div class="disclaimer">&copy; 2013 Alexander Schenkel, <a href="http://www.alexi.ch">alexi.ch</a></div>'+
+            '<div class="thanks">Thanks to:<ul><li><a href="http://schtoeffel.ch/">schtoeffel</a> for many ideas, designs, code</li></ul></div>'
+        }]
+    },
+    
     config: {
-        tabBarPosition: 'bottom',
-        ui: 'mainTabpanel',
-
+        navigationBar: {
+            ui: 'topbar',
+            defaults: {
+                ui: 'topbtn'
+            },
+            items: [{
+                text: 'prev',
+                cls: 'x-button-back',
+                action: 'lastComic',
+                align: 'left'
+            }, {
+                iconCls: 'info',
+                iconMask: true,
+                align: 'right',
+                action: 'about'
+            }, {
+                iconCls: 'list',
+                iconMask: true,
+                align: 'right',
+                action: 'selectComic'
+            }, {
+                text: 'next',
+                cls: 'x-button-forward',
+                action: 'nextComic',
+                align: 'right'
+            }]
+        },
         items: [{
-            title: 'Comic',
-            iconCls: 'photos2',
             itemId: 'comicPanel',
+            title: 'YDCV',
             scrollable: false,
             layout: {
                 type: 'fit',
@@ -20,31 +56,6 @@ Ext.define('XV.view.Main', {
             },
 
             items: [{
-                xtype: 'titlebar',
-                docked: 'top',
-                title: 'YDCV',
-                itemId: 'imageTitlebar',
-                ui: 'topbar',
-                defaults: {
-                    ui: 'topbtn'
-                },
-                items: [{
-                    text: 'prev',
-                    cls: 'x-button-back',
-                    action: 'lastComic',
-                    align: 'left'
-                }, {
-                    iconCls: 'list',
-                    iconMask: true,
-                    align: 'right',
-                    action: 'selectComic'
-                }, {
-                    text: 'next',
-                    cls: 'x-button-forward',
-                    action: 'nextComic',
-                    align: 'right'
-                }]
-            }, {
                 scrollable: 'both',
                 itemId: 'imageContainer',
                 style: 'background-image: url(resources/images/white_carbonfiber.png)',
@@ -60,24 +71,7 @@ Ext.define('XV.view.Main', {
 
             }]
 
-        }, {
-                title: 'About',
-                iconCls: 'info2',
-                style: 'background-image: url(resources/images/white_carbonfiber.png)',
-                items:[{
-                    xtype: 'titlebar',
-                    title: 'YDCV - Your Daily Comic Viewer',
-                    docked: 'top',
-                    ui: 'topbar'
-                }, {
-                    styleHtmlContent: true,
-                    cls: 'about',
-                    html:
-                    '<div class="subtitle">A very simplistic, fast, slick web comic viewer offering exactly the solution for my need: reading my favorite web comics. Not more, not less.</div>'+
-                    '<div class="disclaimer">&copy; 2013 Alexander Schenkel, <a href="http://www.alexi.ch">alexi.ch</a></div>'+
-                    '<div class="thanks">Thanks to:<ul><li><a href="http://schtoeffel.ch/">schtoeffel</a> for many ideas, designs, code</li></ul></div>'
-                }]
-            }
+        }
         ]
     },
 
@@ -119,5 +113,6 @@ Ext.define('XV.view.Main', {
             hideOnMaskTap: true,
             items: [comicChoosePanel]
         });
+
     }
 });

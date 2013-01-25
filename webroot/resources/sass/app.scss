@@ -1,9 +1,9 @@
-$font-family: "Comic Sans MS", cursive, sans-serif;
+$font-family: "Comic Sans MS", sans-serif;
 
 // VARIABLES
-$base-color: #000;
+$base-color: #333;
 $base-gradient:'matte';
-$active-color: #319113;
+$active-color: #051191;
 $neutral-color: #fff;
 $page-bg-color: #333;
 
@@ -28,11 +28,10 @@ $page-bg-color: #333;
 @include sencha-form;
 @include sencha-msgbox;
 
-@include sencha-toolbar-ui('topbar', #000, 'recessed');
-@include sencha-tabbar-ui('mainTabpanel', #000, 'recessed', #319113);
+@include sencha-toolbar-ui('topbar', #333, 'recessed');
 
 
-@include sencha-button-ui('topbtn', #319113, 'matte');
+@include sencha-button-ui('topbtn', #051191, 'matte');
 // Your custom code goes here...
 @include sencha-loading-spinner( );
 
@@ -46,21 +45,6 @@ $page-bg-color: #333;
 	}
 	.content {
 		text-align: center;
-	}
-}
-
-.subtext {
-	background-color: #222;
-	text-align: center;
-	.x-html {
-		padding: 0.8em;
-	}
-	a {
-		font-size: .8em;
-		color: #319113;
-	}
-	a:visited {
-		color: #319113;
 	}
 }
 
