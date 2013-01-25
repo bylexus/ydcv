@@ -47,7 +47,7 @@ Ext.define('XV.view.Main', {
             }, {
                 scrollable: 'both',
                 itemId: 'imageContainer',
-                style: 'background-image: url(resources/images/black.jpg)',
+                style: 'background-image: url(resources/images/white_carbonfiber.png)',
                 layout: {
                     type: 'vbox',
                     align: 'stretch',
@@ -62,12 +62,14 @@ Ext.define('XV.view.Main', {
                 docked: 'bottom',
                 itemId: 'subtext',
                 styleHtmlContent: true,
+                style: 'background-image: url(resources/images/white_carbonfiber.png)',
                 cls: 'subtext'
             }]
 
         }, {
                 title: 'About',
                 iconCls: 'info2',
+                style: 'background-image: url(resources/images/white_carbonfiber.png)',
                 items:[{
                     xtype: 'titlebar',
                     title: 'YDCV - Your Daily Comic Viewer',
