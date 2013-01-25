@@ -58,12 +58,6 @@ Ext.define('XV.view.Main', {
                     margin: '0 0 20 0'
                 }]
 
-            }, {
-                docked: 'bottom',
-                itemId: 'subtext',
-                styleHtmlContent: true,
-                style: 'background-image: url(resources/images/white_carbonfiber.png)',
-                cls: 'subtext'
             }]
 
         }, {

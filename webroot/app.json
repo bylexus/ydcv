@@ -98,6 +98,7 @@
      */
     "resources": [
         "resources/images",
+        "resources/css",
         "resources/icons",
         "resources/startup"
     ],

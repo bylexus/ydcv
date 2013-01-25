@@ -11,7 +11,6 @@ Ext.define('XV.controller.Main', {
             comicPanel: '#comicPanel',
             imageTitlebar: '#imageTitlebar',
             image: '#image',
-            subtext: '#subtext',
             lastComicBtn: 'button[action=lastComic]',
             nextComicBtn: 'button[action=nextComic]',
             selComicBtn: 'button[action=selectComic]',
@@ -76,6 +75,7 @@ Ext.define('XV.controller.Main', {
         var img = new Image();
         this.getImage().element.on({
             taphold: 'onImgTaphold',
+            doubletap: 'onImgDoubleTap',
             scope: this
         });
         Ext.Anim.run(this.getImage(), 'slide', {
@@ -116,7 +116,6 @@ Ext.define('XV.controller.Main', {
                 'line-height': (panel.element.getHeight()) + 'px'
             });
 
-            this.getSubtext().setHtml('<div><a href="'+obj.orig_link+'">'+obj.orig_link+'</a></div>');
             Ext.Viewport.setMasked(false);
         }.bind(this);
     },
@@ -167,5 +166,8 @@ Ext.define('XV.controller.Main', {
     },
     onImgTaphold: function() {
         Ext.Msg.alert(this._comicObj.getComicInfo().safe_title, this._comicObj.getComicInfo().safe_text);
+    },
+    onImgDoubleTap: function() {
+        window.open(this._comicObj.getComicInfo().orig_link);
     }
 });
